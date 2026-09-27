@@ -1,0 +1,16 @@
+# dependencies / builds
+node_modules/
+.next/
+.next-export/
+out/
+
+# big source assets kept locally only
+house.original.glb
+public/house.fbx
+
+# local tooling / OS
+.claude/
+.DS_Store
+*.log
+.env*
+tsconfig.tsbuildinfo

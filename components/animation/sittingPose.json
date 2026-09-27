@@ -1,0 +1,749 @@
+{
+  "name": "MyAnimation",
+  "duration": 3,
+  "tracks": [
+    {
+      "name": "mixamorigHips.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.04107052832841873,
+        -0.7273074388504028,
+        -0.6800974607467651,
+        -0.08248980343341827
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigSpine.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.9824519753456116,
+        0.1746765822172165,
+        -0.012541945092380047,
+        0.06417867541313171
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigSpine1.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.12381826341152191,
+        -0.010289444588124752,
+        -0.014390106312930584,
+        0.9921472072601318
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigSpine2.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.12260008603334427,
+        -0.010271672159433365,
+        -0.014402722008526325,
+        0.9922984838485718
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigNeck.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.10654452443122864,
+        0.0363156683743,
+        -0.04201696813106537,
+        0.9927557706832886
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigHead.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -0.12067274749279022,
+        0.11616525799036026,
+        0.021221058443188667,
+        0.9856436252593994
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigHeadTop_End.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -0.5912060141563416,
+        -1.0890340185198966e-8,
+        4.910695183824032e-10,
+        0.8065205812454224
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftShoulder.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.5453182458877563,
+        0.5457122921943665,
+        -0.5986213684082031,
+        0.21558888256549835
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftArm.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -0.23796820640563965,
+        -0.2927015721797943,
+        0.020341014489531517,
+        0.9258959293365479
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftForeArm.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.029260845854878426,
+        0.1030048280954361,
+        0.3671413064002991,
+        0.9239811301231384
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftHand.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -0.23810359835624695,
+        -0.19459883868694305,
+        0.006096844561398029,
+        0.9515255093574524
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftHandThumb1.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.23092520236968994,
+        -0.00037047333898954093,
+        0.30363357067108154,
+        0.924380898475647
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftHandThumb2.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.0928291380405426,
+        0.13049465417861938,
+        0.1268511712551117,
+        0.978908896446228
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftHandThumb3.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -0.0386640839278698,
+        -0.03886711969971657,
+        -0.04464999958872795,
+        0.9974972605705261
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftHandThumb4.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        5.587935447692871e-9,
+        3.632158041000366e-8,
+        2.3283064365386963e-9,
+        1
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftHandIndex1.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.13232851028442383,
+        -0.05744734779000282,
+        0.0795690193772316,
+        0.9863355159759521
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftHandIndex2.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.19735382497310638,
+        -0.0028082288336008787,
+        -0.005280164070427418,
+        0.9803140759468079
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftHandIndex3.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -0.011697224341332912,
+        0.0003294602211099118,
+        0.00036074634408578277,
+        0.9999315142631531
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftHandIndex4.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -7.171183824539185e-8,
+        -3.282912075519562e-8,
+        -7.683412128756117e-9,
+        1
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftHandMiddle1.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.11259977519512177,
+        -0.03337278962135315,
+        -0.12302219867706299,
+        0.9854304194450378
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftHandMiddle2.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.1759686917066574,
+        -0.005668017081916332,
+        0.0034592675510793924,
+        0.9843733906745911
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftHandMiddle3.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -0.10648975521326065,
+        0.007664941716939211,
+        0.007591813802719116,
+        0.9942553043365479
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftHandMiddle4.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        2.491287887096405e-7,
+        1.7462298274040222e-8,
+        -1.7229467630386353e-7,
+        1
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftHandRing1.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.19293653964996338,
+        -0.04240494593977928,
+        -0.19760741293430328,
+        0.9601711630821228
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftHandRing2.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.22446484863758087,
+        -0.005985536612570286,
+        0.015579143539071083,
+        0.9743392467498779
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftHandRing3.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -0.07952014356851578,
+        0.0058974106796085835,
+        0.006028913427144289,
+        0.9967975616455078
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftHandRing4.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        5.0291433240090555e-8,
+        6.495973536857491e-8,
+        -3.2596297216969106e-8,
+        1
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightShoulder.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.5224501490592957,
+        -0.4178641736507416,
+        0.635491132736206,
+        0.38546910881996155
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightArm.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -0.14536425471305847,
+        0.10064539313316345,
+        0.08081557601690292,
+        0.9809223413467407
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightForeArm.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.02209189161658287,
+        -0.23236331343650818,
+        -0.4342980980873108,
+        0.8700025081634521
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightHand.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -0.370609313249588,
+        0.12197442352771759,
+        0.12376395612955093,
+        0.9123889207839966
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightHandThumb1.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.14178240299224854,
+        0.13181498646736145,
+        -0.32856109738349915,
+        0.9244296550750732
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightHandThumb2.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.10382092744112015,
+        -0.14423638582229614,
+        -0.039297234266996384,
+        0.9832969307899475
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightHandThumb3.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.010432178154587746,
+        0.0026067662984132767,
+        0.0009192382567562163,
+        0.9999417662620544
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightHandThumb4.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -3.7252894102834944e-9,
+        1.564621925354004e-7,
+        1.8626444830971423e-9,
+        1
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightHandIndex1.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.1500159651041031,
+        0.05370205268263817,
+        -0.034118324518203735,
+        0.9866342544555664
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightHandIndex2.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.19919507205486298,
+        0.0022922405041754246,
+        0.006189506035298109,
+        0.9799376726150513
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightHandIndex3.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -0.048908818513154984,
+        -0.0018147322116419673,
+        -0.001885471399873495,
+        0.9987998008728027
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightHandIndex4.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -9.313223969797946e-9,
+        3.3993277526178645e-8,
+        -1.8626450382086546e-9,
+        1
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightHandMiddle1.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.11179929971694946,
+        0.0513712540268898,
+        0.11975477635860443,
+        0.985150158405304
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightHandMiddle2.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.2820797562599182,
+        0.009343382902443409,
+        -0.01072603091597557,
+        0.9592854380607605
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightHandMiddle3.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -0.12471488863229752,
+        -0.010463088750839233,
+        -0.01045156829059124,
+        0.992082417011261
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightHandMiddle4.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -1.2340030330904028e-8,
+        -6.044283509254456e-7,
+        8.847563570668626e-9,
+        1
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightHandRing1.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.1346684843301773,
+        0.028921371325850487,
+        0.16448897123336792,
+        0.9767146110534668
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightHandRing2.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.31221893429756165,
+        0.00912101287394762,
+        -0.027678407728672028,
+        0.9495630860328674
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightHandRing3.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -0.06477197259664536,
+        -0.005797610152512789,
+        -0.006108413450419903,
+        0.9978645443916321
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightHandRing4.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -1.7345886504926966e-8,
+        3.119930624961853e-8,
+        1.350417466738918e-8,
+        1
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftUpLeg.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.05065414682030678,
+        0.6563895344734192,
+        -0.7482463717460632,
+        0.08194123208522797
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftLeg.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -0.6630080342292786,
+        0.09110316634178162,
+        -0.04134219512343407,
+        0.7418971657752991
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftFoot.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.23502354323863983,
+        -0.061485644429922104,
+        -0.11207766085863113,
+        0.9635465741157532
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftToeBase.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.3221866488456726,
+        -0.015709584578871727,
+        0.006870908662676811,
+        0.9465208649635315
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigLeftToe_End.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        2.962770295766859e-8,
+        -4.068133421242237e-7,
+        1.1117664122650694e-8,
+        1
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightUpLeg.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.21803948283195496,
+        -0.5550992488861084,
+        0.7492298483848572,
+        0.2880595028400421
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightLeg.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        -0.7153095602989197,
+        -0.2538987398147583,
+        0.010212115943431854,
+        0.6509711146354675
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightFoot.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.5488423705101013,
+        0.10813073068857193,
+        0.08022138476371765,
+        0.8250117301940918
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightToeBase.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        0.4837687611579895,
+        -0.08530963212251663,
+        -0.014571812003850937,
+        0.8709062337875366
+      ],
+      "type": "quaternion"
+    },
+    {
+      "name": "mixamorigRightToe_End.quaternion",
+      "times": [
+        0
+      ],
+      "values": [
+        3.277092019970951e-8,
+        2.1315645426511765e-7,
+        9.72358975559473e-8,
+        1
+      ],
+      "type": "quaternion"
+    }
+  ],
+  "uuid": "58738ba1-415d-43ed-aaf7-f186351906fc",
+  "blendMode": 2500
+}
