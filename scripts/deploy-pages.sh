@@ -9,6 +9,7 @@ REMOTE="$(git remote get-url origin)"
 
 STATIC_EXPORT=1 NEXT_PUBLIC_BASE_PATH="/$REPO_NAME" npx next build
 touch .next-export/.nojekyll   # serve _next/ as-is
+rm -f .next-export/house.fbx   # local-only source asset, not used by the game
 
 TMP="$(mktemp -d)"
 cp -R .next-export/. "$TMP"
