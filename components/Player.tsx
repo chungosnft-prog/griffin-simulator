@@ -190,8 +190,13 @@ const Player = forwardRef<any, PlayerProps>(function Player(
   const [isGrounded, setIsGrounded] = useState<boolean>(true)
 
   // Camera-related state
-  const [cameraDirection, setCameraDirection] = useState(new THREE.Vector3(0, 0, -1))
-  const [cameraQuaternion, setCameraQuaternion] = useState(new THREE.Quaternion())
+  // Movement basis: the live camera (follow cam, bathroom fixed cam, …). When the
+  // camera cuts while a direction is held, keep the old basis until the keys are
+  // released — Resident Evil style — so he doesn't snap round (or bounce back out
+  // of a camera zone) at the cut.
+  const moveBasisQ     = useRef(new THREE.Quaternion())
+  const moveBasisZone  = useRef<string | null>(null)
+  const moveBasisInit  = useRef(false)
 
   // Ground normal for slope-based jumping
   const groundNormalRef = useRef(new THREE.Vector3(0, 1, 0))
@@ -926,10 +931,9 @@ const Player = forwardRef<any, PlayerProps>(function Player(
     nearCouch:     () => nearCouchRef.current,
     sitting:       () => sittingRef.current,
     rotation: () => rigidBodyRef.current?.rotation() || { x: 0, y: 0, z: 0, w: 1 },
-    updateCameraInfo: (direction: THREE.Vector3, quaternion: THREE.Quaternion) => {
-      setCameraDirection(direction.clone())
-      setCameraQuaternion(quaternion.clone())
-    },
+    // Kept for CameraController; movement now reads the live camera directly
+    // (this used to set React state every frame, re-rendering the player 60×/s)
+    updateCameraInfo: () => {},
     // ✅ NEW: Audio controls
     setFootstepVolume: (volume: number) => {
       if (footstepAudioRef.current) {
@@ -1908,13 +1912,18 @@ const Player = forwardRef<any, PlayerProps>(function Player(
     // Coyote time
     const coyoteTimeAvailable = currentTime - jumpState.current.lastGroundedTime < COYOTE_TIME
 
-    // ✅ CAMERA-RELATIVE MOVEMENT
-    // Calculate movement direction based on camera
-    const cameraForward = new THREE.Vector3(0, 0, -1).applyQuaternion(cameraQuaternion)
+    // ✅ CAMERA-RELATIVE MOVEMENT (whichever camera is active)
+    const zoneNow = playerState.activeZoneId
+    if (!moveBasisInit.current || !moving || zoneNow === moveBasisZone.current) {
+      moveBasisQ.current.copy(state.camera.quaternion)
+      moveBasisZone.current = zoneNow
+      moveBasisInit.current = true
+    }
+    const cameraForward = new THREE.Vector3(0, 0, -1).applyQuaternion(moveBasisQ.current)
     cameraForward.y = 0
     cameraForward.normalize()
 
-    const cameraRight = new THREE.Vector3(1, 0, 0).applyQuaternion(cameraQuaternion)
+    const cameraRight = new THREE.Vector3(1, 0, 0).applyQuaternion(moveBasisQ.current)
     cameraRight.y = 0
     cameraRight.normalize()
 

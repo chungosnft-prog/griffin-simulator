@@ -9,7 +9,9 @@ import CutsceneEditorPanel from "./cutscene/CutsceneEditorPanel"
 import { useCutsceneContext } from "./cutscene/CutsceneContext"
 import { playerState } from "./playerState"
 import { animEditorState } from "./animation/animEditorState"
-import LoadingScreen from "./LoadingScreen"
+import LoadingScreen, { SCENE_READY_EVENT } from "./LoadingScreen"
+
+const WEBGL_UNAVAILABLE = "webgl-unavailable"
 import AnimationEditorPanel from "./animation/AnimationEditorPanel"
 import { inspectorState, type InspectorHit } from "./SceneInspector"
 
@@ -96,7 +98,20 @@ function GameInner() {
     return () => window.removeEventListener("keydown", onKey)
   }, [])
 
-  useEffect(() => { setIsReady(true) }, [])
+  // Check WebGL up front: with it disabled (e.g. Firefox with hardware
+  // acceleration off) the canvas can't start and the page just sat on "Loading".
+  useEffect(() => {
+    let ok = false
+    try {
+      const c = document.createElement("canvas")
+      ok = !!(c.getContext("webgl2") || c.getContext("webgl"))
+    } catch {}
+    if (!ok) {
+      setLoadingError(WEBGL_UNAVAILABLE)
+      window.dispatchEvent(new Event(SCENE_READY_EVENT))   // dismiss the loading overlay
+    }
+    setIsReady(true)
+  }, [])
 
   useEffect(() => {
     const handlePointerLockChange = () => {
@@ -152,6 +167,32 @@ function GameInner() {
       <div style={{ width:"100vw", height:"100vh", background:"#111", display:"flex",
                     alignItems:"center", justifyContent:"center", color:"white", fontFamily:"monospace" }}>
         Loading…
+      </div>
+    )
+  }
+
+  if (loadingError === WEBGL_UNAVAILABLE) {
+    return (
+      <div style={{ width:"100vw", height:"100vh", background:"#111", display:"flex",
+                    alignItems:"center", justifyContent:"center", color:"white",
+                    fontFamily:"monospace", padding:16, boxSizing:"border-box" }}>
+        <div style={{ maxWidth:560, lineHeight:1.6, fontSize:14 }}>
+          <div style={{ fontSize:18, fontWeight:700, marginBottom:12 }}>3D graphics are turned off in this browser</div>
+          <div style={{ opacity:0.85, marginBottom:16 }}>
+            Griffin Simulator needs WebGL, and your browser has it disabled — so the game can’t start.
+          </div>
+          <div style={{ fontWeight:700 }}>Firefox</div>
+          <div style={{ opacity:0.85, marginBottom:12 }}>
+            Settings → General → Performance → turn on “Use hardware acceleration when available”, then restart.
+            If it still fails, open <code>about:config</code> and set <code>webgl.disabled</code> to <code>false</code>.
+          </div>
+          <div style={{ fontWeight:700 }}>Chrome / Edge / Brave</div>
+          <div style={{ opacity:0.85, marginBottom:16 }}>
+            Settings → System → turn on “Use graphics acceleration when available”, then relaunch.
+          </div>
+          <div style={{ opacity:0.6, marginBottom:16 }}>Or just try a different browser.</div>
+          <button onClick={() => window.location.reload()} style={{ padding:"8px 16px", cursor:"pointer" }}>Try again</button>
+        </div>
       </div>
     )
   }
