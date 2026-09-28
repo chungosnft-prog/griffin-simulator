@@ -109,6 +109,13 @@ const Player = forwardRef<any, PlayerProps>(function Player(
   const ragDragHistory = useRef<Array<{ x: number; y: number; z: number; t: number }>>([])
   const ragCameraRef   = useRef<THREE.Camera | null>(null)
 
+  // ── Talking jaw (mixamorig:Jaw, added by scripts/rig_jaw.py) ──────────────
+  const jawRestQ    = useRef<THREE.Quaternion | null>(null)   // bind rotation, from the GLB
+  const talkAmt     = useRef(0)                                // 0..1, eased
+  const _jawQ       = useRef(new THREE.Quaternion())
+  const JAW_AXIS    = new THREE.Vector3(1, 0, 0)               // bone-local hinge (+ = open)
+  const JAW_OPEN    = 0.3                                      // max opening, radians (~17°)
+
   const ragMinLens = useRef<number[]>([])   // anti-fold minimum lengths (RAG_MIN_DEF)
   const ragAccum   = useRef(0)              // fixed-step time accumulator
   const RAG_H       = 1 / 120               // physics substep (s) — independent of frame rate
@@ -430,6 +437,10 @@ const Player = forwardRef<any, PlayerProps>(function Player(
       normalizedActions["RUN"] = runAction
       runAction.setLoop(THREE.LoopRepeat, Infinity)
     }
+
+    // Jaw bind rotation (the clips key it at rest; we add the talking motion on top)
+    const jawNode = parser?.json?.nodes?.find((n: any) => n.name === "mixamorig:Jaw")
+    jawRestQ.current = jawNode ? new THREE.Quaternion().fromArray(jawNode.rotation ?? [0, 0, 0, 1]) : null
 
     // Sprint: griffin.glb has no run clip, so derive one from the walk cycle
     const walkClip = animations.find((c: THREE.AnimationClip) => ANIMATION_CONFIG.RUN.includes(c.name))
@@ -822,7 +833,7 @@ const Player = forwardRef<any, PlayerProps>(function Player(
   // ── Crossfade helper: every animation change goes through here ─────────
   // Fades `next` in from 0 while fading out everything else that's still
   // contributing, so the pose always blends (≤ 0.5 s) instead of snapping.
-  const crossTo = (next: THREE.AnimationAction, duration: number = ANIMATION_CONFIG.BLEND_DURATION) => {
+  const crossTo = (next: THREE.AnimationAction, duration: number = ANIMATION_CONFIG.BLEND_DURATION, syncFrom?: THREE.AnimationAction | null) => {
     const d = Math.min(0.5, Math.max(0.05, duration))
     const all = new Set<THREE.AnimationAction>([
       ...Object.values(actions ?? {}).filter(Boolean) as THREE.AnimationAction[],
@@ -830,6 +841,12 @@ const Player = forwardRef<any, PlayerProps>(function Player(
     ])
     if (sittingActionRef.current) all.add(sittingActionRef.current)
     next.reset()
+    // Same-cycle clips (walk ↔ run) continue at the same point in the stride
+    // instead of restarting, so switching speed doesn't hitch the legs
+    if (syncFrom && syncFrom !== next) {
+      const phase = (syncFrom.time % syncFrom.getClip().duration) / syncFrom.getClip().duration
+      next.time = phase * next.getClip().duration
+    }
     next.enabled = true
     next.setEffectiveWeight(1)
     next.play()
@@ -887,7 +904,9 @@ const Player = forwardRef<any, PlayerProps>(function Player(
         ? ANIMATION_CONFIG.JUMP_BLEND_DURATION
         : isIdleTransition ? ANIMATION_CONFIG.IDLE_BLEND_DURATION : ANIMATION_CONFIG.BLEND_DURATION
     }
-    crossTo(newAction, blendDuration)
+    const LOCOMOTION = ["RUN", "SPRINT"]
+    const sync = LOCOMOTION.includes(animName) && LOCOMOTION.includes(currentAnimation) ? currentActionRef.current : null
+    crossTo(newAction, blendDuration, sync)
 
     currentActionRef.current = newAction
     setCurrentAnimation(animName)
@@ -1191,6 +1210,21 @@ const Player = forwardRef<any, PlayerProps>(function Player(
     }
     if (!ragdollActive.current && !animEditorState.createMode) easeModelGroup(delta)
 
+    // ── Talking: hold T (and he trash-talks while taunting at the mirror) ──
+    // Runs after drei's mixer update, so it layers on top of whatever clip is playing.
+    {
+      const jaw = animEditorState.skeleton?.getBoneByName("mixamorigJaw")
+      if (jaw && jawRestQ.current && !ragdollActive.current && !animEditorState.createMode) {
+        const talking = (isPointerLocked && !!(getKeys() as any).talk) || tauntRef.current.active
+        talkAmt.current = THREE.MathUtils.damp(talkAmt.current, talking ? 1 : 0, 10, delta)
+        // Syllable rhythm: two detuned oscillators, rectified so the mouth rests shut between them
+        const t = state.clock.elapsedTime
+        const flap = Math.max(0, 0.6 * Math.sin(t * 13) + 0.45 * Math.sin(t * 7.3 + 1.7))
+        const open = Math.min(1, flap) * talkAmt.current * JAW_OPEN
+        jaw.quaternion.copy(jawRestQ.current).multiply(_jawQ.current.setFromAxisAngle(JAW_AXIS, open))
+      }
+    }
+
     // ── Animation editor: write playback state, handle requests ──────────
     if (currentActionRef.current) {
       animEditorState.activeClip = currentActionRef.current.getClip().name
@@ -1243,7 +1277,8 @@ const Player = forwardRef<any, PlayerProps>(function Player(
 
     // ── Ragdoll (R toggles) ───────────────────────────────────────────────
     const rPressed   = rDown && !rWasDown.current
-    const endRagdoll = rPressed && ragdollActive.current
+    const endRagdoll = ragdollActive.current && (rPressed || playerState.ragdollEndRequest)
+    playerState.ragdollEndRequest = false
     if (rPressed && !ragdollActive.current) {
       ragdollActive.current    = true
       playerState.ragdoll      = true   // set before unlocking so Game.tsx keeps playing (no "Click to play")

@@ -14,3 +14,4 @@ public/house.fbx
 *.log
 .env*
 tsconfig.tsbuildinfo
+griffin.original.glb

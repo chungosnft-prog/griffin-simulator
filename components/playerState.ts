@@ -12,6 +12,7 @@ export const playerState = {
   activeZoneId: null as string | null,
   freeMouse:    false,
   ragdoll:      false,
+  ragdollEndRequest: false,  // set by Game.tsx on ESC → Player stands up to idle
   nearMirror:   false,  // standing at the bathroom sink (E → taunt)
   taunting:     false,  // ragdoll active (cursor released for grabbing, but the game keeps running)  // playing without pointer lock (lock refused) — see Game.tsx
 }

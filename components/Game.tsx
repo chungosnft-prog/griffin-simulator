@@ -24,6 +24,7 @@ const controlsMap = [
   { name: "interact", keys: ["KeyE"]               },
   { name: "ragdoll",  keys: ["KeyR"]               },
   { name: "drink",    keys: ["KeyF"]               },
+  { name: "talk",     keys: ["KeyT"]               },
 ]
 
 // Inner game — needs to be inside CutsceneProvider to access context
@@ -126,7 +127,12 @@ function GameInner() {
         if (req && typeof req.catch === "function") req.catch(startUnlocked)
       } catch { startUnlocked() }
     }
-    const onKey = (e: KeyboardEvent) => { if (e.code === "Escape") setUnlockedPlay(false) }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.code !== "Escape") return
+      // ESC while ragdolled stands him back up (idle) and keeps playing
+      if (playerState.ragdoll) { playerState.ragdollEndRequest = true; return }
+      setUnlockedPlay(false)
+    }
     canvas.addEventListener("click", onClick)
     document.addEventListener("pointerlockerror", startUnlocked)
     window.addEventListener("keydown", onKey)
@@ -165,7 +171,7 @@ function GameInner() {
     <div style={{ width:"100%", height:"100%", position:"relative" }}>
 
       {/* Click-to-play overlay (hidden once pointer locked, in editor mode, or in rig edit mode) */}
-      {!isPointerLocked && !editorActive && !animEditorState.createMode && (
+      {!isPointerLocked && !editorActive && !animEditorState.createMode && !ragdollUI && (
         <div style={{
           position:"absolute", inset:0,
           display:"flex", alignItems:"center", justifyContent:"center",
@@ -198,12 +204,13 @@ function GameInner() {
             <>
               <div style={{ color: "#ffe080" }}>RAGDOLL — zero gravity</div>
               <div>WASD — Drift · SPACE — Up · SHIFT — Down</div>
-              <div>Drag him with the mouse · R — Stand up</div>
+              <div>Drag him with the mouse · R or ESC — Stand up</div>
             </>
           ) : (
             <>
               <div>WASD — Move · SHIFT — Sprint</div>
               <div>SPACE — Jump · C — Camera · R — Ragdoll · ESC — Unlock</div>
+              <div>T (hold) — Talk</div>
             </>
           )}
         </div>
